@@ -1,14 +1,26 @@
 const express = require("express");
 const app = express();
 const port = 3000;
+const { OK, ERR } = require('./utils/response')
+
+app.use(express.json())
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello World!" });
+  const data = {
+    isRunning: true,
+    serverVersion: "1.0.0"
+  }
+  OK(res, 200, data, "server sedang berjalan di main route")
 });
 
 //melihat
 app.get("/my-movies", (req, res) => {
-  res.json({ message: "List of movies" });
+  const data = {
+    id: 1,
+    title: "Hero hero",
+    years: "2004"
+  }
+  OK(res, 200, data, "success getting my movies endpoint")
 });
 
 //membuat
